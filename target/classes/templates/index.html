@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>一覧画面</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<!-- 页面标题 -->
+	<div id="title">
+		<h3>
+			<strong>一览画面</strong>
+		</h3>
+	</div>
+	<!-- 查询区 -->
+	<div id="search">
+		<form id="searchForm" class="form-inline" action="">
+			<div class="form-group">
+				<label for="status">ステータス</label> <select id="status"
+					class="form-control">
+					<option value="1">123</option>
+					<option value="2">456</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="time">受付日</label> <input type="email"
+					class="form-control" id="time">
+			</div>
+			<button type="submit" class="btn btn-default">检索</button>
+		</form>
+	</div>
+	<!-- 按钮区 -->
+	<div id="button">
+		<div style="width: 200px;">
+			<input class="btn btn-default" type="button" value="新建">
+		</div>
+		<div style="float: right; width: 200px;">
+			<input class="btn btn-default" type="button" value="Excel出力">
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<!-- 列表区 -->
+	<div id="table" class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>社员Code</th>
+					<th>社员名</th>
+					<th>居所Code</th>
+					<th>局名</th>
+					<th>提出事由</th>
+					<th>ステータス</th>
+					<th>受付日</th>
+					<th>书类</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="users:${users}">
+					<td th:text="${users.name}"></td>
+					<td th:text="${users.age}"></td>
+					<td th:text="${users.phone}"></td>
+					<td>已退货</td>
+					<td>已退货</td>
+					<td>已退货</td>
+					<td>已退货</td>
+					<td>已退货</td>
+					<td><a th:href="@{'detail/'+${users.id}}">详情</a></td>
+					<td><a th:href="@{'update/'+${users.id}}">编辑</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+	<!-- <h3>一覧画面</h3>
+	<input type="button" value="添加" onclick="add();">
+	<button class="btn-primary">按钮</button>
+	<table>
+		<thead>
+			<tr>
+				<th>用户名</th>
+				<th>年龄</th>
+				<th>电话</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="users:${users}">
+				<td th:text="${users.name}"></td>
+				<td th:text="${users.age}"></td>
+				<td th:text="${users.phone}"></td>
+				<td><a th:href="@{'update/'+${users.id}}">编辑</a> <a
+					href="javascript:void(0)" th:onclick="|del(${users.id} )|">删除</a> <a
+					th:href="@{'detail/'+${users.id}}">详情</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<script type="text/javascript">
+		function edit(id) {
+			window.location.href = "update/" + id;
+		}
+		function del(id) {
+			var flag = confirm("你确定要删除此选项吗");
+			if (flag == true) {
+				window.location.href = "delete/" + id;
+			}
+		}
+		function detail(id) {
+			window.location.href = "detail/" + id;
+		}
+		function add() {
+			window.location.href = "save";
+		}
+	</script> -->
+
+</body>
