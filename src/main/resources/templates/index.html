@@ -21,28 +21,26 @@
 	<div id="search">
 		<form id="searchForm" class="form-inline" action="">
 			<div class="form-group">
-				<label for="status">ステータス</label> <select id="status"
-					class="form-control">
-					<option value="1">123</option>
-					<option value="2">456</option>
+				<label for="status">ステータス</label> 
+				<select id="status"	class="form-control">
+					<option th:each="users : ${users}" th:value="${users.name}" th:text="${users.name}"></option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="time">受付日</label> <input type="email"
-					class="form-control" id="time">
+				<label for="time">受付日</label> 
+				<input type="email"	class="form-control" id="time">
 			</div>
-			<button type="submit" class="btn btn-default">检索</button>
+				<button type="submit" class="btn btn-default">检索</button>
 		</form>
 	</div>
 	<!-- 按钮区 -->
-	<div id="button">
-		<div style="width: 200px;">
-			<input class="btn btn-default" type="button" value="新建">
-		</div>
-		<div style="float: right; width: 200px;">
-			<input class="btn btn-default" type="button" value="Excel出力">
-		</div>
-		<div style="clear: both;"></div>
+	<div id="button" class="form-inline">
+		<input style="width: 150px;" class="btn btn-default" type="button" value="新建" onclick="add();"> 
+		<input style="width: 150px;" class="btn btn-default" type="button" value="Excel出力">
+	</div>
+	<!-- 上传文件区 -->
+	<div>
+		<a th:href="@{'upload'}">上传文件</a>
 	</div>
 	<!-- 列表区 -->
 	<div id="table" class="table-responsive">
@@ -76,50 +74,12 @@
 		</table>
 	</div>
 
-
-
-
-	<!-- <h3>一覧画面</h3>
-	<input type="button" value="添加" onclick="add();">
-	<button class="btn-primary">按钮</button>
-	<table>
-		<thead>
-			<tr>
-				<th>用户名</th>
-				<th>年龄</th>
-				<th>电话</th>
-				<th>操作</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="users:${users}">
-				<td th:text="${users.name}"></td>
-				<td th:text="${users.age}"></td>
-				<td th:text="${users.phone}"></td>
-				<td><a th:href="@{'update/'+${users.id}}">编辑</a> <a
-					href="javascript:void(0)" th:onclick="|del(${users.id} )|">删除</a> <a
-					th:href="@{'detail/'+${users.id}}">详情</a></td>
-			</tr>
-		</tbody>
-	</table>
-
-
 	<script type="text/javascript">
-		function edit(id) {
-			window.location.href = "update/" + id;
-		}
-		function del(id) {
-			var flag = confirm("你确定要删除此选项吗");
-			if (flag == true) {
-				window.location.href = "delete/" + id;
-			}
-		}
-		function detail(id) {
-			window.location.href = "detail/" + id;
-		}
+	
 		function add() {
 			window.location.href = "save";
 		}
-	</script> -->
+		
+	</script>
 
 </body>
