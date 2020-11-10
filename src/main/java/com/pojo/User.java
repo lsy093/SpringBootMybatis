@@ -1,41 +1,20 @@
 package com.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import lombok.Data;
+
+@Data
+@JsonPropertyOrder({"name", "age", "phone", "password" })
 public class User {
 	private int id;
+	@JsonProperty("name")
 	private String name;
+	@JsonProperty("age")
 	private int age;
+	@JsonProperty("phone")
 	private int phone;
+	@JsonProperty("password")
 	private String password;
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	public int getPhone() {
-		return phone;
-	}
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-
 }

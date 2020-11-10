@@ -12,7 +12,10 @@
 
 <body>
 	<form method="post" action="/upload" enctype="multipart/form-data">
-		<input type="file" name="file"><br> <input type="submit"
-			value="提交">
+		<input type="file" name="file"><br> 
+		<div>
+				<label style="color: red;" th:if="${param.error}" th:text="账号密码错误，请重新输入" id="lab"></label>
+		</div>
+		<input type="submit" value="提交">
 	</form>
 </body>

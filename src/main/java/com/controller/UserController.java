@@ -1,11 +1,8 @@
 package com.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +23,6 @@ import com.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -84,23 +80,13 @@ public class UserController {
         return "/upload";
     }
 
-    @PostMapping("/upload")
-    @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file) {
+	@RequestMapping("/upload")
+    public String upload(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }
-
-        String fileName = file.getOriginalFilename();
-        String filePath = "C:\\Workspace\\eclipse-workspace\\";
-        File dest = new File(filePath + fileName);
-        try {
-            file.transferTo(dest);
-            LOGGER.info("上传成功");
-            return "上传成功";
-        } catch (IOException e) {
-            LOGGER.error(e.toString(), e);
-        }
-        return "上传失败！";
+        userService.upload(file);
+        
+        return "redirect:/";
     }
 }

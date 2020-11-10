@@ -67,8 +67,10 @@
 					<td>已退货</td>
 					<td>已退货</td>
 					<td>已退货</td>
-					<td><a th:href="@{'detail/'+${users.id}}">详情</a></td>
-					<td><a th:href="@{'update/'+${users.id}}">编辑</a></td>
+					<td>
+					<a th:href="@{'detail/'+${users.id}}">详情</a>
+					<a th:href="@{'update/'+${users.id}}">编辑</a>
+					<a href="javascript:void(0)" th:onclick="|return del('${users.id}')|">删除</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -78,6 +80,13 @@
 	
 		function add() {
 			window.location.href = "save";
+		}
+		
+		function del(id) {
+			var flag = confirm("你确定要删除此选项吗");
+			if (flag == true) {
+				window.location.href = "delete/" + id;
+			}
 		}
 		
 	</script>

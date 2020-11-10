@@ -20,14 +20,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		@Override
 	    public void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests()
-	        .antMatchers("/login").permitAll()
-	        .antMatchers("/admin/index").hasRole("admin")//指定权限为ADMIN才能访问
-	        .antMatchers("/person").hasAnyRole("admin","user")//指定多个权限都能访问
-	        .anyRequest() //任何其它请求
-	        .authenticated() //都需要身份认证
+	        .antMatchers("/login")
+	        .permitAll()
+	        .antMatchers("/admin/index")
+	        .hasRole("admin")//指定权限为ADMIN才能访问
+	        .antMatchers("/person")
+	        .hasAnyRole("admin","user")//指定多个权限都能访问
+	        .anyRequest()
+	        .authenticated()
 	        .and()
-	        .formLogin() //使用表单认证方式
+	        .formLogin()
 	        .loginPage("/login")//配置默认登录入口
+	        .defaultSuccessUrl("/",true)//配置登录成功后页面
+			.failureUrl("/login?error=true")
 	        .and()
 	        .csrf().disable();
 	    }
