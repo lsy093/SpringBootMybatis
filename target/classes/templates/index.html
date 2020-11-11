@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>一覧画面</title>
-
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<title>Demo</title>
 </head>
 
 <body>
@@ -21,40 +22,35 @@
 	<div id="search">
 		<form id="searchForm" class="form-inline" action="">
 			<div class="form-group">
-				<label for="status">ステータス</label> 
-				<select id="status"	class="form-control">
-					<option th:each="users : ${users}" th:value="${users.name}" th:text="${users.name}"></option>
+				<label for="name">Name</label> <select id="name"
+					class="form-control">
+					<option th:each="users : ${users}" th:value="${users.name}"
+						th:text="${users.name}"></option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="time">受付日</label> 
-				<input type="email"	class="form-control" id="time">
+				<label for="age">Age</label> <input id="age" type="text"
+					class="form-control">
 			</div>
-				<button type="submit" class="btn btn-default">检索</button>
+			<button type="submit" class="btn btn-default">检索</button>
 		</form>
 	</div>
 	<!-- 按钮区 -->
-	<div id="button" class="form-inline">
-		<input style="width: 150px;" class="btn btn-default" type="button" value="新建" onclick="add();"> 
-		<input style="width: 150px;" class="btn btn-default" type="button" value="Excel出力">
-	</div>
 	<!-- 上传文件区 -->
-	<div>
-		<a th:href="@{'upload'}">上传文件</a>
+	<div id="button" class="form-inline">
+		<input style="width: 150px;" class="btn btn-default" type="button"
+			value="新建" /> <a th:href="@{'upload'}">上传文件</a>
 	</div>
+
 	<!-- 列表区 -->
 	<div id="table" class="table-responsive">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>社员Code</th>
-					<th>社员名</th>
-					<th>居所Code</th>
-					<th>局名</th>
-					<th>提出事由</th>
-					<th>ステータス</th>
-					<th>受付日</th>
-					<th>书类</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Phone</th>
+					<th>Password</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,33 +58,18 @@
 					<td th:text="${users.name}"></td>
 					<td th:text="${users.age}"></td>
 					<td th:text="${users.phone}"></td>
-					<td>已退货</td>
-					<td>已退货</td>
-					<td>已退货</td>
-					<td>已退货</td>
-					<td>已退货</td>
-					<td>
-					<a th:href="@{'detail/'+${users.id}}">详情</a>
-					<a th:href="@{'update/'+${users.id}}">编辑</a>
-					<a href="javascript:void(0)" th:onclick="|return del('${users.id}')|">删除</a></td>
+					<td th:text="${users.password}"></td>
+					<td><a th:href="@{'detail/'+${users.id}}">详情</a> <a
+						th:href="@{'update/'+${users.id}}">编辑</a> <a
+						href="javascript:void(0)" th:onclick="|return del('${users.id}')|">删除</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
-	<script type="text/javascript">
-	
-		function add() {
-			window.location.href = "save";
-		}
-		
-		function del(id) {
-			var flag = confirm("你确定要删除此选项吗");
-			if (flag == true) {
-				window.location.href = "delete/" + id;
-			}
-		}
-		
-	</script>
+	<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+	<script th:src="@{/js/source.js}"></script>
 
 </body>
+</html>

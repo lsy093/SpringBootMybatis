@@ -9,11 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.pojo.User;
 import com.service.UserService;
@@ -81,11 +79,16 @@ public class UserController {
     }
 
 	@RequestMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) throws IOException {
+    public String upload(@RequestParam("file") MultipartFile file){
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }
-        userService.upload(file);
+        try {
+			userService.upload(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         return "redirect:/";
     }

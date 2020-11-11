@@ -3,6 +3,7 @@ package com.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.pojo.User;
@@ -22,7 +23,7 @@ public interface UserMapper {
 	
 	public int update(@Param("id") int id, User user);
 
-	public void upload(@Param("users")List<User> users);
+	public void upload(@Param("users")List<User> users) throws DataAccessException;
 
 
 	
